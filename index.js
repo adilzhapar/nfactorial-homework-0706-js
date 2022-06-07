@@ -8,7 +8,8 @@ const add = () => {
 
     if(cntry.value != "" && cmdr.value != "" && cmdr.value != ""){
         let v = document.createElement("div");
-        v.className = "emp";
+        v.className = "emp " + cntry.value;
+
 
         let p1 = document.createElement("p");
         p1.innerHTML = cntry.value;
@@ -22,9 +23,13 @@ const add = () => {
         p3.innerHTML = cmdr.value;
         p3.className = "jsp";
 
+        let d = document.createElement("div");
+        d.className = cntry.value + "w";
+
         v.appendChild(p1);
         v.appendChild(p2);
         v.appendChild(p3);
+        v.appendChild(d);
         obj.appendChild(v);
 
         cntry.value = "";
@@ -37,19 +42,20 @@ const add = () => {
 }
 
 const add_wrw = () => {
-    let wrw = document.querySelector("#wrw");
-    let wrws = document.createElement("div");
-    let v = document.querySelector(".emp");
-    wrws.className = "warriors";
-
-    if(wrw.value != ""){
+    let wrw = document.querySelector("#wrw"); // name of Warrior
+    let wcnt = document.querySelector("#wrw-cnt"); // country for warrior
+    let country = document.querySelector("."+ wcnt.value); // is exists such country
+    if(country){
+        let v = document.querySelector(`.${wcnt.value}w`);
         let pw = document.createElement("p");
-        pw.innerHTML = wrw.value;
         pw.className = "jspw";
+        pw.innerHTML = wrw.value;
+        v.appendChild(pw);
         
-        wrws.appendChild(pw);
-        v.appendChild(wrws);
         wrw.value = "";
+        wcnt.value = "";
+    }else{
+        alert("Nu such country");
     }
 }
 
